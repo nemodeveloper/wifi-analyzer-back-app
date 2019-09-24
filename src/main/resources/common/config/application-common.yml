@@ -1,0 +1,57 @@
+# Spring config
+spring:
+  application:
+    name: wifi-analyzer
+  # Spring boot admin config
+  boot:
+    admin:
+      client:
+        enabled: false
+        url: http://localhost:8060/admin
+        username: "admin"
+        password: "1234"
+        period: 60000
+        auto-registration: true
+        auto-deregistration: true
+        register-once: false
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.xml
+    enabled: true
+
+logging:
+  level:
+    liquibase: INFO
+
+# Server config
+server:
+  http2:
+    enabled: true
+  servlet:
+    context-path: /wifi-analyzer/api
+  port: 8081
+  use-forward-headers: true
+
+# Application monitor info
+info:
+  app:
+    name: Wifi analyzer
+    description: Service for aggregate and analyze wifi information
+    environment: @spring-profile-active@
+
+# Application monitor
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      base-path: /monitor
+      exposure:
+        include: auditevents,caches,configprops,env,health,info,metrics,scheduledtasks,shutdown,sessions
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  metrics:
+    cache:
+      instrument-cache: true
