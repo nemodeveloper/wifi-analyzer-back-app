@@ -4,7 +4,7 @@
 --comment Create database
 CREATE TABLE PRIVILEGES
 (
-    ID VARCHAR (32),
+    ID VARCHAR (36),
     NAME VARCHAR (64),
     DESCRIPTION VARCHAR (256),
     PRIMARY KEY(ID)
@@ -12,7 +12,7 @@ CREATE TABLE PRIVILEGES
 
 CREATE TABLE ROLES
 (
-    ID VARCHAR (32),
+    ID VARCHAR (36),
     NAME VARCHAR (64),
     DESCRIPTION VARCHAR (256),
     PRIMARY KEY(ID)
@@ -20,14 +20,14 @@ CREATE TABLE ROLES
 
 CREATE TABLE ROLES_PRIVILEGES
 (
-    ROLE_ID VARCHAR (32),
-    PRIVILEGE_ID VARCHAR (32),
+    ROLE_ID VARCHAR (36),
+    PRIVILEGE_ID VARCHAR (36),
     PRIMARY KEY(ROLE_ID, PRIVILEGE_ID)
 );
 
 CREATE TABLE USERS
 (
-    ID VARCHAR (32),
+    ID VARCHAR (36),
     LOGIN VARCHAR (64),
     PASSWORD VARCHAR (256),
     EMAIL VARCHAR (256),
@@ -37,8 +37,8 @@ CREATE TABLE USERS
 
 CREATE TABLE USERS_ROLES
 (
-    USER_ID VARCHAR (32),
-    ROLE_ID VARCHAR (32),
+    USER_ID VARCHAR (36),
+    ROLE_ID VARCHAR (36),
     PRIMARY KEY(USER_ID, ROLE_ID)
 );
 
@@ -47,13 +47,13 @@ CREATE TABLE oauth_client_details
   client_id VARCHAR(256) PRIMARY KEY,
   resource_ids VARCHAR(256),
   client_secret VARCHAR(256) NOT NULL,
-  scope VARCHAR(256),
-  authorized_grant_types VARCHAR(256),
+  scope VARCHAR(256) NOT NULL,
+  authorized_grant_types VARCHAR(256) NOT NULL,
   web_server_redirect_uri VARCHAR(256),
   authorities VARCHAR(256),
-  access_token_validity INTEGER,
-  refresh_token_validity INTEGER,
-  additional_information VARCHAR(4000),
+  access_token_validity INTEGER NOT NULL,
+  refresh_token_validity INTEGER NOT NULL,
+  additional_information VARCHAR(4096),
   autoapprove VARCHAR(256)
 );
 

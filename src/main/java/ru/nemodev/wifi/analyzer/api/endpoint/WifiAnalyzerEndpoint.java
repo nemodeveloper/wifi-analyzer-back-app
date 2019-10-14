@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 
 @RestController
 @RequestMapping(value = "/v1", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -14,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class WifiAnalyzerEndpoint {
 
     @GetMapping("/hello")
-    public ResponseEntity<String> get()
+    public ResponseEntity<Principal> get(final Principal principal)
     {
-        return ResponseEntity.ok("hello");
+        return ResponseEntity.ok(principal);
     }
 
 }

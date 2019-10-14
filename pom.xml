@@ -372,6 +372,10 @@
                 <directory>src/main/resources/common</directory>
                 <filtering>true</filtering>
             </resource>
+            <resource>
+                <directory>src/main/resources/security</directory>
+                <filtering>true</filtering>
+            </resource>
         </resources>
     </build>
 
