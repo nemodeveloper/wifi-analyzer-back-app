@@ -21,6 +21,7 @@ import java.util.Properties;
 public class HibernateConfig
 {
     private static final String ENTITY_PACKAGE = "ru.nemodev.wifi.analyzer.entity";
+    private static final String SECURITY_ENTITY_PACKAGE = "ru.nemodev.wifi.analyzer.security.entity";
 
     private final DataSource dataSource;
 
@@ -34,7 +35,7 @@ public class HibernateConfig
     {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPackagesToScan(ENTITY_PACKAGE);
+        em.setPackagesToScan(ENTITY_PACKAGE, SECURITY_ENTITY_PACKAGE);
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
