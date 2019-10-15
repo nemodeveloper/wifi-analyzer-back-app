@@ -16,6 +16,8 @@ import javax.persistence.Table;
 @Table(name = "PRIVILEGES")
 public class Privilege
 {
+    public static final String NAME_PREF = "PRIVILEGE_";
+
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
     private String id;

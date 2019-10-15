@@ -15,6 +15,8 @@ import java.util.List;
 @Table(name = "ROLES")
 public class Role
 {
+    public static final String NAME_PREF = "ROLE_";
+
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
     private String id;

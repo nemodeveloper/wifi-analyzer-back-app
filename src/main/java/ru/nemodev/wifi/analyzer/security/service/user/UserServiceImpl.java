@@ -6,6 +6,7 @@ import ru.nemodev.wifi.analyzer.security.entity.user.User;
 import ru.nemodev.wifi.analyzer.security.repository.user.UserRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 
 public class UserServiceImpl implements UserService {
@@ -23,5 +24,23 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("USER NOT FOUND!");
 
         return userOptional.get();
+    }
+
+    @Override
+    public User create(User user) {
+
+        user.setId(UUID.randomUUID().toString());
+
+        return userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public Optional<User> findByLogin(String login) {
+        return userRepository.findByLogin(login);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

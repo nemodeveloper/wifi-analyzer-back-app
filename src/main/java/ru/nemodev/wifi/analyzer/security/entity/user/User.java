@@ -13,6 +13,7 @@ import ru.nemodev.wifi.analyzer.security.entity.role.Role;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -47,7 +48,7 @@ public class User implements UserDetails
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getGrantedAuthorities(getPrivileges());
+        return Collections.unmodifiableCollection(getGrantedAuthorities(getPrivileges()));
     }
 
     @Override
@@ -70,24 +71,25 @@ public class User implements UserDetails
         return true;
     }
 
-    private List<String> getPrivileges() {
-        List<String> privileges = new ArrayList<>();
-        List<Privilege> collection = new ArrayList<>();
-        for (Role role : roles) {
-            collection.addAll(role.getPrivileges());
-        }
-        for (Privilege item : collection) {
-            privileges.add(item.getName());
-        }
-        return privileges;
-    }
-
     private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (String privilege : privileges) {
             authorities.add(new SimpleGrantedAuthority(privilege));
         }
         return authorities;
+    }
+
+    private List<String> getPrivileges() {
+        List<String> grantTypes = new ArrayList<>();
+        List<Privilege> privileges = new ArrayList<>();
+        for (Role role : roles) {
+            grantTypes.add(role.getName());
+            privileges.addAll(role.getPrivileges());
+        }
+        for (Privilege item : privileges) {
+            grantTypes.add(item.getName());
+        }
+        return grantTypes;
     }
 
 }

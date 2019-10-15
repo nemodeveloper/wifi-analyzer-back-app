@@ -1,8 +1,9 @@
 package ru.nemodev.wifi.analyzer.security.service.oauth;
 
-import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import ru.nemodev.wifi.analyzer.security.entity.oauth.AuthClientDetail;
 import ru.nemodev.wifi.analyzer.security.repository.oauth.AuthClientDetailRepository;
+
+import java.util.Optional;
 
 public class AuthClientDetailServiceImpl implements AuthClientDetailService {
 
@@ -13,7 +14,17 @@ public class AuthClientDetailServiceImpl implements AuthClientDetailService {
     }
 
     @Override
-    public AuthClientDetail loadClientByClientId(String clientId) throws ClientRegistrationException {
-        return authClientDetailRepository.findByClientId(clientId).orElse(null);
+    public AuthClientDetail loadClientByClientId(String clientId) {
+        return findByClientId(clientId).orElse(null);
+    }
+
+    @Override
+    public AuthClientDetail create(AuthClientDetail authClientDetail) {
+        return authClientDetailRepository.saveAndFlush(authClientDetail);
+    }
+
+    @Override
+    public Optional<AuthClientDetail> findByClientId(String clientId) {
+        return authClientDetailRepository.findByClientId(clientId);
     }
 }
