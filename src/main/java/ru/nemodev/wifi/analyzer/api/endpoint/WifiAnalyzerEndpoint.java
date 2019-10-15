@@ -17,7 +17,7 @@ import java.security.Principal;
 public class WifiAnalyzerEndpoint {
 
     @GetMapping("/hello")
-    @PreAuthorize("hasRole('PRIVILEGE_HELLO')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Principal> get(final Principal principal)
     {
         return ResponseEntity.ok(principal);

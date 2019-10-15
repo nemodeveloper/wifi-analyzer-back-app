@@ -11,10 +11,8 @@ import ru.nemodev.wifi.analyzer.security.entity.privilege.Privilege;
 import ru.nemodev.wifi.analyzer.security.entity.role.Role;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 
 @Getter
 @Setter
@@ -71,7 +69,7 @@ public class User implements UserDetails
         return true;
     }
 
-    private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges) {
+    private List<GrantedAuthority> getGrantedAuthorities(Set<String> privileges) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (String privilege : privileges) {
             authorities.add(new SimpleGrantedAuthority(privilege));
@@ -79,8 +77,8 @@ public class User implements UserDetails
         return authorities;
     }
 
-    private List<String> getPrivileges() {
-        List<String> grantTypes = new ArrayList<>();
+    private Set<String> getPrivileges() {
+        Set<String> grantTypes = new HashSet<>();
         List<Privilege> privileges = new ArrayList<>();
         for (Role role : roles) {
             grantTypes.add(role.getName());
