@@ -9,10 +9,4 @@
         </expiry>
     </cache-template>
 
-    <cache alias="foo" uses-template="baseCacheTemplate">
-        <resources>
-            <heap unit="entries">100</heap>
-        </resources>
-    </cache>
-
 </config>

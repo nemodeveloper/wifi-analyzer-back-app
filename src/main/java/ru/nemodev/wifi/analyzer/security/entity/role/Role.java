@@ -3,6 +3,7 @@ package ru.nemodev.wifi.analyzer.security.entity.role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.nemodev.wifi.analyzer.core.entity.BaseEntity;
 import ru.nemodev.wifi.analyzer.security.entity.privilege.Privilege;
 
 import javax.persistence.*;
@@ -13,13 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "ROLES")
-public class Role
+public class Role extends BaseEntity
 {
     public static final String NAME_PREF = "ROLE_";
-
-    @Id
-    @Column(name = "ID", updatable = false, nullable = false)
-    private String id;
 
     @Column(name = "NAME", nullable = false)
     private String name;

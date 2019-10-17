@@ -2,10 +2,10 @@ package ru.nemodev.wifi.analyzer.security.entity.oauth;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
+import ru.nemodev.wifi.analyzer.core.entity.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Collection;
 import java.util.List;
@@ -15,9 +15,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "OAUTH_CLIENT_DETAILS")
-public class AuthClientDetail implements ClientDetails {
+public class AuthClientDetail extends BaseEntity implements ClientDetails {
 
-    @Id
     @Column(name = "CLIENT_ID", updatable = false, nullable = false)
     private String clientId;
 

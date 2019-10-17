@@ -39,6 +39,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, ROOT_PATTERN).access("#oauth2.hasScope('write')")
                 .antMatchers(HttpMethod.PUT, ROOT_PATTERN).access("#oauth2.hasScope('write')")
                 .antMatchers(HttpMethod.DELETE, ROOT_PATTERN).access("#oauth2.hasScope('write')")
+                .antMatchers("/wifi-analyzer/v1/analyze-report**").access("#hasRole('ADMIN')")
             .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 

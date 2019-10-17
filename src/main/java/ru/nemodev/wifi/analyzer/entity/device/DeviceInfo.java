@@ -1,11 +1,12 @@
-package ru.nemodev.wifi.analyzer.entity;
+package ru.nemodev.wifi.analyzer.entity.device;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.nemodev.wifi.analyzer.core.entity.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -16,9 +17,9 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name = "DEVICES_INFO")
-public class DeviceInfo {
+public class DeviceInfo extends BaseEntity {
 
-    @Id
-    private String id;
+    @Column(name = "name", nullable = false)
+    private String name;
 
 }

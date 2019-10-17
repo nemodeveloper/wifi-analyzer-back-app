@@ -7,6 +7,7 @@ import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.nemodev.wifi.analyzer.core.entity.BaseEntity;
 import ru.nemodev.wifi.analyzer.security.entity.privilege.Privilege;
 import ru.nemodev.wifi.analyzer.security.entity.role.Role;
 
@@ -19,12 +20,8 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "USERS")
-public class User implements UserDetails
+public class User extends BaseEntity implements UserDetails
 {
-    @Id
-    @Column(name = "ID", updatable = false, nullable = false)
-    private String id;
-
     @Column(name = "LOGIN", nullable = false)
     private String login;
 

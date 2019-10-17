@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset simanov-an:create-db-changelog-1
+--changeset simanov-an:create-db-security-changelog-1
 --comment Create database
 CREATE TABLE PRIVILEGES
 (
@@ -45,18 +45,20 @@ CREATE TABLE USERS_ROLES
 
 CREATE TABLE oauth_client_details
 (
-  client_id VARCHAR(256) PRIMARY KEY,
-  resource_ids VARCHAR(256),
-  client_secret VARCHAR(256) NOT NULL,
-  scope VARCHAR(256) NOT NULL,
-  authorized_grant_types VARCHAR(256) NOT NULL,
-  web_server_redirect_uri VARCHAR(256),
-  authorities VARCHAR(256),
-  access_token_validity INTEGER NOT NULL,
-  refresh_token_validity INTEGER NOT NULL,
-  additional_information VARCHAR(4096),
-  autoapprove VARCHAR(256)
+    id varchar (36) primary key,
+    client_id VARCHAR(256),
+    resource_ids VARCHAR(256),
+    client_secret VARCHAR(256) NOT NULL,
+    scope VARCHAR(256) NOT NULL,
+    authorized_grant_types VARCHAR(256) NOT NULL,
+    web_server_redirect_uri VARCHAR(256),
+    authorities VARCHAR(256),
+    access_token_validity INTEGER NOT NULL,
+    refresh_token_validity INTEGER NOT NULL,
+    additional_information VARCHAR(4096),
+    autoapprove VARCHAR(256)
 );
+CREATE UNIQUE INDEX I_OA_C_D_CID ON oauth_client_details (CLIENT_ID);
 
 CREATE TABLE oauth_client_token
 (

@@ -2,11 +2,12 @@ package ru.nemodev.wifi.analyzer.security.service.user;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import ru.nemodev.wifi.analyzer.security.entity.user.User;
 import ru.nemodev.wifi.analyzer.security.repository.user.UserRepository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 
 public class UserServiceImpl implements UserService {
@@ -18,6 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Optional<User> userOptional = userRepository.findByLogin(login);
         if (userOptional.isEmpty())
@@ -27,19 +29,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User create(User user) {
-
-        user.setId(UUID.randomUUID().toString());
-
         return userRepository.saveAndFlush(user);
     }
 
     @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public Optional<User> findByLogin(String login) {
         return userRepository.findByLogin(login);
     }
 
     @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
