@@ -24,6 +24,19 @@ import ru.nemodev.wifi.analyzer.security.service.user.UserService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
+    public static final String[] AUTH_WHITELIST = {
+            // -- swagger ui
+            "/wifi-analyzer/api/v2/api-docs",
+            "/wifi-analyzer/api/swagger-resources",
+            "/wifi-analyzer/api/swagger-resources/**",
+            "/wifi-analyzer/api/configuration/ui",
+            "/wifi-analyzer/api/configuration/security",
+            "/wifi-analyzer/api/swagger-ui.html",
+            "/wifi-analyzer/api/webjars/**",
+            // h2-console
+            "/wifi-analyzer/api/h2-console**"
+    };
+
     private final UserService userService;
 
     public SecurityConfig(UserService userService)
@@ -37,8 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .csrf().disable()
             .anonymous().disable()
             .authorizeRequests()
-                .anyRequest().authenticated()
                 .antMatchers("/wifi-analyzer/api/oauth/token/**").permitAll()
+                .anyRequest().authenticated()
             .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
@@ -59,7 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring();
+        web.ignoring()
+            .antMatchers(AUTH_WHITELIST);
     }
 
     @Override

@@ -60,36 +60,36 @@ CREATE TABLE oauth_client_details
 );
 CREATE UNIQUE INDEX I_OA_C_D_CID ON oauth_client_details (CLIENT_ID);
 
-CREATE TABLE oauth_client_token
-(
-  authentication_id VARCHAR(256) PRIMARY KEY,
-  token_id VARCHAR(256),
-  token BLOB,
-  user_name VARCHAR(256),
-  client_id VARCHAR(256)
-);
-
-CREATE TABLE oauth_access_token
-(
-  token_id VARCHAR(256),
-  token BLOB,
-  authentication_id VARCHAR(256),
-  user_name VARCHAR(256),
-  client_id VARCHAR(256),
-  authentication BLOB,
-  refresh_token VARCHAR(256)
-);
-
-CREATE TABLE oauth_refresh_token
-(
-  token_id VARCHAR(256),
-  token BLOB,
-  authentication BLOB
-);
-
-CREATE TABLE oauth_code
-(
-  code VARCHAR(256),
-  authentication BLOB
-);
+-- CREATE TABLE oauth_client_token
+-- (
+--   authentication_id VARCHAR(256) PRIMARY KEY,
+--   token_id VARCHAR(256),
+--   token BLOB,
+--   user_name VARCHAR(256),
+--   client_id VARCHAR(256)
+-- );
+--
+-- CREATE TABLE oauth_access_token
+-- (
+--   token_id VARCHAR(256),
+--   token BLOB,
+--   authentication_id VARCHAR(256),
+--   user_name VARCHAR(256),
+--   client_id VARCHAR(256),
+--   authentication BLOB,
+--   refresh_token VARCHAR(256)
+-- );
+--
+-- CREATE TABLE oauth_refresh_token
+-- (
+--   token_id VARCHAR(256),
+--   token BLOB,
+--   authentication BLOB
+-- );
+--
+-- CREATE TABLE oauth_code
+-- (
+--   code VARCHAR(256),
+--   authentication BLOB
+-- );
 --rollback;

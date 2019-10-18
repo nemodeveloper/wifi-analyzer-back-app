@@ -1,54 +1,50 @@
 package ru.nemodev.wifi.analyzer.api.endpoint;
 
 import io.swagger.annotations.Api;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.nemodev.wifi.analyzer.entity.wifi_report.WifiAnalyzeReport;
-import ru.nemodev.wifi.analyzer.service.wifi_report.WifiAnalyzeReportService;
+import ru.nemodev.wifi.analyzer.api.dto.wifi.report.WifiAnalyzeReportDto;
+import ru.nemodev.wifi.analyzer.api.processor.WifiAnalyzeReportProcessor;
+
+import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/v1/analyze-report", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/v1/report", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api("Wifi analyze report service information")
 public class WifiAnalyzeReportEndpoint {
 
-    private final WifiAnalyzeReportService wifiAnalyzeReportService;
+    private final WifiAnalyzeReportProcessor wifiAnalyzeReportProcessor;
 
-    public WifiAnalyzeReportEndpoint(WifiAnalyzeReportService wifiAnalyzeReportService) {
-        this.wifiAnalyzeReportService = wifiAnalyzeReportService;
+    public WifiAnalyzeReportEndpoint(WifiAnalyzeReportProcessor wifiAnalyzeReportProcessor) {
+        this.wifiAnalyzeReportProcessor = wifiAnalyzeReportProcessor;
     }
 
     @GetMapping
-    public ResponseEntity getList(@RequestParam(value = "page", required = false) Integer page,
-                                  @RequestParam(value = "size", required = false) Integer size) {
-        if (page == null) {
-            page = 0;
-        }
-        if (size == null) {
-            size = 10;
-        }
-
-        return ResponseEntity.ok(wifiAnalyzeReportService.findBy(
-                PageRequest.of(page, size,
-                        Sort.by(Sort.Direction.DESC,"creationDate"))));
+    @ApiOperation(value = "Find by params")
+    public ResponseEntity<List<WifiAnalyzeReportDto>> findBy(@RequestParam(value = "page", required = false) Integer page,
+                                                              @RequestParam(value = "size", required = false) Integer size) {
+        return ResponseEntity.ok(wifiAnalyzeReportProcessor.findBy(page, size));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getDetail(@PathVariable("id") String id) {
-        return ResponseEntity.of(wifiAnalyzeReportService.findById(id));
+    @ApiOperation(value = "Find report by id")
+    public ResponseEntity<WifiAnalyzeReportDto> findById(@PathVariable("id") String id) {
+        return ResponseEntity.of(wifiAnalyzeReportProcessor.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody WifiAnalyzeReport wifiAnalyzeReport) {
-        return ResponseEntity.ok(wifiAnalyzeReportService.create(wifiAnalyzeReport));
+    @ApiOperation(value = "Create report")
+    public ResponseEntity create(@RequestBody WifiAnalyzeReportDto wifiAnalyzeReportDto) {
+        return ResponseEntity.ok(wifiAnalyzeReportProcessor.create(wifiAnalyzeReportDto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") String id) {
-        wifiAnalyzeReportService.deleteById(id);
+    @ApiOperation(value = "Delete by id")
+    public ResponseEntity deleteById(@PathVariable("id") String id) {
+        wifiAnalyzeReportProcessor.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

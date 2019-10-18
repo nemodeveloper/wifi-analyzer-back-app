@@ -34,12 +34,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
             .anonymous().disable()
             .authorizeRequests()
+                .antMatchers(SecurityConfig.AUTH_WHITELIST).permitAll() // TODO Понять почему не пускает Swagger
                 .anyRequest().authenticated()
                 .antMatchers(HttpMethod.GET, ROOT_PATTERN).access("#oauth2.hasScope('read')")
                 .antMatchers(HttpMethod.POST, ROOT_PATTERN).access("#oauth2.hasScope('write')")
                 .antMatchers(HttpMethod.PUT, ROOT_PATTERN).access("#oauth2.hasScope('write')")
                 .antMatchers(HttpMethod.DELETE, ROOT_PATTERN).access("#oauth2.hasScope('write')")
-                .antMatchers("/wifi-analyzer/v1/analyze-report**").access("#hasRole('ADMIN')")
+                .antMatchers("/wifi-analyzer/v1/report**").access("#hasRole('ADMIN')")
             .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 
