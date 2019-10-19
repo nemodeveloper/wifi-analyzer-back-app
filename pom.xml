@@ -235,6 +235,23 @@
             </build>
         </profile>
         <profile>
+            <id>prod</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <spring-profile-active>prod</spring-profile-active>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/prod</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
             <id>db-h2</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
