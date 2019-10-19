@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "08c2f587-9f4f-42af-81b4-423fed75c846",
+		"name": "wifi-analyzer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OAuth get token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "web",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/wifi-analyzer/api/oauth/token?username=admin&password=1234&grant_type=password&scope=read write",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"wifi-analyzer",
+						"api",
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "1234"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "scope",
+							"value": "read write"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAuth refresh token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "web",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/wifi-analyzer/api/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJleHAiOjE1NzE0OTQzMDUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZjFlYTE1ZWEtMWIyZi00YTc5LTk4MmMtNjVlMzgxMmM4MmYwIiwiY2xpZW50X2lkIjoid2ViIn0.A9lCVXbkXuIkW5RCnBPr5f5hHw6mb_-ga1YJwEA-PEGGr3__esqte_zdc2sqiFC2bPjz6GL42zk6IHgcHGuhlS9ISwlRgGfeWoaasEcz87Aq3FbxQvdngCuhw0weXPRlopNmjC-JZV5MjUJReXotrKVCIKaIonKo5xoa4CS6JEfQ8ZXJNeiXGQPasfN-FLGXQ2ADAk_VO1hoSXd9YPe_aKEgOPEMVbmEb2ebpu7YkymEvmJw9OydCLL9O0y9tvDkP3S3VE9SO8qPuEehWR1kUdAKNUnmDNyzaa1RVTBnRb0VULCxo2MpmJYAJPQ_nhl3cu5F0Y-KEiTppOEd6NlEtA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"wifi-analyzer",
+						"api",
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJleHAiOjE1NzE0OTQzMDUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZjFlYTE1ZWEtMWIyZi00YTc5LTk4MmMtNjVlMzgxMmM4MmYwIiwiY2xpZW50X2lkIjoid2ViIn0.A9lCVXbkXuIkW5RCnBPr5f5hHw6mb_-ga1YJwEA-PEGGr3__esqte_zdc2sqiFC2bPjz6GL42zk6IHgcHGuhlS9ISwlRgGfeWoaasEcz87Aq3FbxQvdngCuhw0weXPRlopNmjC-JZV5MjUJReXotrKVCIKaIonKo5xoa4CS6JEfQ8ZXJNeiXGQPasfN-FLGXQ2ADAk_VO1hoSXd9YPe_aKEgOPEMVbmEb2ebpu7YkymEvmJw9OydCLL9O0y9tvDkP3S3VE9SO8qPuEehWR1kUdAKNUnmDNyzaa1RVTBnRb0VULCxo2MpmJYAJPQ_nhl3cu5F0Y-KEiTppOEd6NlEtA"
+						},
+						{
+							"key": "client_id",
+							"value": "mobile",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get report list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE0OTQxMDUsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJjbGllbnRfaWQiOiJ3ZWIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.QFRUo1lksNyz9tZTPz-iT4O9cKYgNkdU7y-_u8GSFlZftE8NVBlP3lRTOiGMMWB4vDHgvsuhyLLwU8TROvz8Y2KXx9SC0EDME9JpHMIWYWkXKetOdJPR8nTOp1n56ju--PcfoA_yNRgtBH5Qoyeb9NJvtPg8gCzIDtB_6cYqrr6xtUh-fdQEpvXbcaAd_BxH_FbWTtP7aK9pqKy-n8dLisLh4Q2PQH84SDprcG0CvNc_xMDDr5QqaRiMas_qmH3MU3dnoZE8GT0HR2PV_X8GwKUk7tZ3IuHTfjsPpKD4eJghcslUGs8unA35GYaVq7hQ7acCZ9vvpoiLOmGRXaxtfg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/wifi-analyzer/api/v1/report?page=0&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"wifi-analyzer",
+						"api",
+						"v1",
+						"report"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create report",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE0OTQxMDUsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJjbGllbnRfaWQiOiJ3ZWIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.QFRUo1lksNyz9tZTPz-iT4O9cKYgNkdU7y-_u8GSFlZftE8NVBlP3lRTOiGMMWB4vDHgvsuhyLLwU8TROvz8Y2KXx9SC0EDME9JpHMIWYWkXKetOdJPR8nTOp1n56ju--PcfoA_yNRgtBH5Qoyeb9NJvtPg8gCzIDtB_6cYqrr6xtUh-fdQEpvXbcaAd_BxH_FbWTtP7aK9pqKy-n8dLisLh4Q2PQH84SDprcG0CvNc_xMDDr5QqaRiMas_qmH3MU3dnoZE8GT0HR2PV_X8GwKUk7tZ3IuHTfjsPpKD4eJghcslUGs8unA35GYaVq7hQ7acCZ9vvpoiLOmGRXaxtfg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceInfo\": {\n\t\t\"name\": \"SAMSUNG S8\"\n\t},\n\t\"wifiAnalyzeInfoList\": [\n\t\t{\n\t\t\t\"ssid\": \"SBRF\"\n\t\t},\n\t\t{\n\t\t\t\"ssid\": \"Sberbank\"\n\t\t}\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/wifi-analyzer/api/v1/report",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"wifi-analyzer",
+						"api",
+						"v1",
+						"report"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get report detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE0OTQxMDUsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJjbGllbnRfaWQiOiJ3ZWIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.QFRUo1lksNyz9tZTPz-iT4O9cKYgNkdU7y-_u8GSFlZftE8NVBlP3lRTOiGMMWB4vDHgvsuhyLLwU8TROvz8Y2KXx9SC0EDME9JpHMIWYWkXKetOdJPR8nTOp1n56ju--PcfoA_yNRgtBH5Qoyeb9NJvtPg8gCzIDtB_6cYqrr6xtUh-fdQEpvXbcaAd_BxH_FbWTtP7aK9pqKy-n8dLisLh4Q2PQH84SDprcG0CvNc_xMDDr5QqaRiMas_qmH3MU3dnoZE8GT0HR2PV_X8GwKUk7tZ3IuHTfjsPpKD4eJghcslUGs8unA35GYaVq7hQ7acCZ9vvpoiLOmGRXaxtfg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"wifi-analyzer",
+						"api",
+						"v1",
+						"report",
+						"1991c1b5-6a54-4012-94a1-694e935fc29f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete report by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE0OTQxMDUsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJjbGllbnRfaWQiOiJ3ZWIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.QFRUo1lksNyz9tZTPz-iT4O9cKYgNkdU7y-_u8GSFlZftE8NVBlP3lRTOiGMMWB4vDHgvsuhyLLwU8TROvz8Y2KXx9SC0EDME9JpHMIWYWkXKetOdJPR8nTOp1n56ju--PcfoA_yNRgtBH5Qoyeb9NJvtPg8gCzIDtB_6cYqrr6xtUh-fdQEpvXbcaAd_BxH_FbWTtP7aK9pqKy-n8dLisLh4Q2PQH84SDprcG0CvNc_xMDDr5QqaRiMas_qmH3MU3dnoZE8GT0HR2PV_X8GwKUk7tZ3IuHTfjsPpKD4eJghcslUGs8unA35GYaVq7hQ7acCZ9vvpoiLOmGRXaxtfg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"wifi-analyzer",
+						"api",
+						"v1",
+						"report",
+						"1991c1b5-6a54-4012-94a1-694e935fc29f"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

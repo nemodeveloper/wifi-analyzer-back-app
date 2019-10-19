@@ -1,6 +1,5 @@
 package ru.nemodev.wifi.analyzer.security.config;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,9 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 import ru.nemodev.wifi.analyzer.security.service.user.UserService;
 
 
@@ -26,15 +22,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
     public static final String[] AUTH_WHITELIST = {
             // -- swagger ui
-            "/wifi-analyzer/api/v2/api-docs",
-            "/wifi-analyzer/api/swagger-resources",
-            "/wifi-analyzer/api/swagger-resources/**",
-            "/wifi-analyzer/api/configuration/ui",
-            "/wifi-analyzer/api/configuration/security",
-            "/wifi-analyzer/api/swagger-ui.html",
-            "/wifi-analyzer/api/webjars/**",
+            "/api/v2/api-docs**",
+            "/swagger-resources**",
+            "/swagger-resources/**",
+            "/configuration/ui**",
+            "/configuration/security**",
+            "/swagger-ui.html**",
+            "/webjars/**",
             // h2-console
-            "/wifi-analyzer/api/h2-console**"
+            "/h2-console**"
     };
 
     private final UserService userService;
@@ -47,33 +43,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+            .cors().and()
             .csrf().disable()
             .anonymous().disable()
             .authorizeRequests()
-                .antMatchers("/wifi-analyzer/api/oauth/token/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers(AUTH_WHITELIST).permitAll()
+                .antMatchers("/oauth/token/**").permitAll()
+            .and().authorizeRequests().anyRequest().authenticated()
             .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
-    @Bean
-    public FilterRegistrationBean corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        source.registerCorsConfiguration("/**", config);
-        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-        bean.setOrder(0);
-        return bean;
-    }
-
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-            .antMatchers(AUTH_WHITELIST);
+        web.ignoring().antMatchers(AUTH_WHITELIST);
     }
 
     @Override
