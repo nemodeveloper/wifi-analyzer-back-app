@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.nemodev.wifi.analyzer.core.entity.BaseEntity;
 import ru.nemodev.wifi.analyzer.entity.device.DeviceInfo;
+import ru.nemodev.wifi.analyzer.entity.location.Location;
 import ru.nemodev.wifi.analyzer.entity.wifi.info.WifiAnalyzeInfo;
 
 import javax.persistence.*;
@@ -24,6 +25,13 @@ public class WifiAnalyzeReport extends BaseEntity {
 
     @Column(name = "CREATION_DATE", nullable = false)
     private LocalDateTime creationDate;
+
+    @Column(name = "COMMENT")
+    private String comment;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "LOCATION_ID", nullable = false)
+    private Location location;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "DEVICE_ID", nullable = false)

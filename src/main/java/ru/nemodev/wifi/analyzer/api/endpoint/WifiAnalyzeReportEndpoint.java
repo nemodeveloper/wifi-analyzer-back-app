@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.nemodev.wifi.analyzer.api.dto.wifi.report.WifiAnalyzeReportDto;
 import ru.nemodev.wifi.analyzer.api.processor.WifiAnalyzeReportProcessor;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/v1/report", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api("Wifi analyze report service information")
+@PreAuthorize("hasAnyRole('ADMIN', 'ANALYZER')")
 public class WifiAnalyzeReportEndpoint {
 
     private final WifiAnalyzeReportProcessor wifiAnalyzeReportProcessor;

@@ -26,12 +26,10 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/wifi-analyzer/api/oauth/token?username=admin&password=1234&grant_type=password&scope=read write",
-					"protocol": "http",
+					"raw": "{{HOST}}/wifi-analyzer/api/oauth/token?username=analyzer&password=1234&grant_type=password&scope=read write",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "8081",
 					"path": [
 						"wifi-analyzer",
 						"api",
@@ -41,7 +39,7 @@
 					"query": [
 						{
 							"key": "username",
-							"value": "admin"
+							"value": "analyzer"
 						},
 						{
 							"key": "password",
@@ -88,12 +86,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8081/wifi-analyzer/api/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJleHAiOjE1NzE0OTQzMDUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZjFlYTE1ZWEtMWIyZi00YTc5LTk4MmMtNjVlMzgxMmM4MmYwIiwiY2xpZW50X2lkIjoid2ViIn0.A9lCVXbkXuIkW5RCnBPr5f5hHw6mb_-ga1YJwEA-PEGGr3__esqte_zdc2sqiFC2bPjz6GL42zk6IHgcHGuhlS9ISwlRgGfeWoaasEcz87Aq3FbxQvdngCuhw0weXPRlopNmjC-JZV5MjUJReXotrKVCIKaIonKo5xoa4CS6JEfQ8ZXJNeiXGQPasfN-FLGXQ2ADAk_VO1hoSXd9YPe_aKEgOPEMVbmEb2ebpu7YkymEvmJw9OydCLL9O0y9tvDkP3S3VE9SO8qPuEehWR1kUdAKNUnmDNyzaa1RVTBnRb0VULCxo2MpmJYAJPQ_nhl3cu5F0Y-KEiTppOEd6NlEtA",
-					"protocol": "http",
+					"raw": "{{HOST}}/wifi-analyzer/api/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJleHAiOjE1NzE0OTQzMDUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZjFlYTE1ZWEtMWIyZi00YTc5LTk4MmMtNjVlMzgxMmM4MmYwIiwiY2xpZW50X2lkIjoid2ViIn0.A9lCVXbkXuIkW5RCnBPr5f5hHw6mb_-ga1YJwEA-PEGGr3__esqte_zdc2sqiFC2bPjz6GL42zk6IHgcHGuhlS9ISwlRgGfeWoaasEcz87Aq3FbxQvdngCuhw0weXPRlopNmjC-JZV5MjUJReXotrKVCIKaIonKo5xoa4CS6JEfQ8ZXJNeiXGQPasfN-FLGXQ2ADAk_VO1hoSXd9YPe_aKEgOPEMVbmEb2ebpu7YkymEvmJw9OydCLL9O0y9tvDkP3S3VE9SO8qPuEehWR1kUdAKNUnmDNyzaa1RVTBnRb0VULCxo2MpmJYAJPQ_nhl3cu5F0Y-KEiTppOEd6NlEtA",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "8081",
 					"path": [
 						"wifi-analyzer",
 						"api",
@@ -132,7 +128,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE0OTQxMDUsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJjbGllbnRfaWQiOiJ3ZWIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.QFRUo1lksNyz9tZTPz-iT4O9cKYgNkdU7y-_u8GSFlZftE8NVBlP3lRTOiGMMWB4vDHgvsuhyLLwU8TROvz8Y2KXx9SC0EDME9JpHMIWYWkXKetOdJPR8nTOp1n56ju--PcfoA_yNRgtBH5Qoyeb9NJvtPg8gCzIDtB_6cYqrr6xtUh-fdQEpvXbcaAd_BxH_FbWTtP7aK9pqKy-n8dLisLh4Q2PQH84SDprcG0CvNc_xMDDr5QqaRiMas_qmH3MU3dnoZE8GT0HR2PV_X8GwKUk7tZ3IuHTfjsPpKD4eJghcslUGs8unA35GYaVq7hQ7acCZ9vvpoiLOmGRXaxtfg",
+							"value": "{{ACCESS_TOKEN}}",
 							"type": "string"
 						}
 					]
@@ -140,12 +136,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/wifi-analyzer/api/v1/report?page=0&size=10",
-					"protocol": "http",
+					"raw": "{{HOST}}/wifi-analyzer/api/v1/report?page=0&size=10",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "8081",
 					"path": [
 						"wifi-analyzer",
 						"api",
@@ -174,7 +168,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE0OTQxMDUsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJjbGllbnRfaWQiOiJ3ZWIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.QFRUo1lksNyz9tZTPz-iT4O9cKYgNkdU7y-_u8GSFlZftE8NVBlP3lRTOiGMMWB4vDHgvsuhyLLwU8TROvz8Y2KXx9SC0EDME9JpHMIWYWkXKetOdJPR8nTOp1n56ju--PcfoA_yNRgtBH5Qoyeb9NJvtPg8gCzIDtB_6cYqrr6xtUh-fdQEpvXbcaAd_BxH_FbWTtP7aK9pqKy-n8dLisLh4Q2PQH84SDprcG0CvNc_xMDDr5QqaRiMas_qmH3MU3dnoZE8GT0HR2PV_X8GwKUk7tZ3IuHTfjsPpKD4eJghcslUGs8unA35GYaVq7hQ7acCZ9vvpoiLOmGRXaxtfg",
+							"value": "{{ACCESS_TOKEN}}",
 							"type": "string"
 						}
 					]
@@ -190,7 +184,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"deviceInfo\": {\n\t\t\"name\": \"SAMSUNG S8\"\n\t},\n\t\"wifiAnalyzeInfoList\": [\n\t\t{\n\t\t\t\"ssid\": \"SBRF\"\n\t\t},\n\t\t{\n\t\t\t\"ssid\": \"Sberbank\"\n\t\t}\n\t]\n}",
+					"raw": "{\n\t\"comment\": \"16 этаж Б.131\",\n\t\"location\": {\n\t\t\"id\": \"bb4f3409-37df-4fad-b86c-7b05a47eb778\"\n\t},\n\t\"deviceInfo\": {\n\t\t\"name\": \"SAMSUNG S8\"\n\t},\n\t\"wifiAnalyzeInfoList\": [\n\t\t{\n\t\t\t\"ssid\": \"SBRF\"\n\t\t},\n\t\t{\n\t\t\t\"ssid\": \"Sberbank\"\n\t\t}\n\t]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -198,12 +192,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/wifi-analyzer/api/v1/report",
-					"protocol": "http",
+					"raw": "{{HOST}}/wifi-analyzer/api/v1/report",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "8081",
 					"path": [
 						"wifi-analyzer",
 						"api",
@@ -222,7 +214,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE0OTQxMDUsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJjbGllbnRfaWQiOiJ3ZWIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.QFRUo1lksNyz9tZTPz-iT4O9cKYgNkdU7y-_u8GSFlZftE8NVBlP3lRTOiGMMWB4vDHgvsuhyLLwU8TROvz8Y2KXx9SC0EDME9JpHMIWYWkXKetOdJPR8nTOp1n56ju--PcfoA_yNRgtBH5Qoyeb9NJvtPg8gCzIDtB_6cYqrr6xtUh-fdQEpvXbcaAd_BxH_FbWTtP7aK9pqKy-n8dLisLh4Q2PQH84SDprcG0CvNc_xMDDr5QqaRiMas_qmH3MU3dnoZE8GT0HR2PV_X8GwKUk7tZ3IuHTfjsPpKD4eJghcslUGs8unA35GYaVq7hQ7acCZ9vvpoiLOmGRXaxtfg",
+							"value": "{{ACCESS_TOKEN}}",
 							"type": "string"
 						}
 					]
@@ -230,12 +222,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
-					"protocol": "http",
+					"raw": "{{HOST}}/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "8081",
 					"path": [
 						"wifi-analyzer",
 						"api",
@@ -255,7 +245,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzE0OTQxMDUsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJjbGllbnRfaWQiOiJ3ZWIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.QFRUo1lksNyz9tZTPz-iT4O9cKYgNkdU7y-_u8GSFlZftE8NVBlP3lRTOiGMMWB4vDHgvsuhyLLwU8TROvz8Y2KXx9SC0EDME9JpHMIWYWkXKetOdJPR8nTOp1n56ju--PcfoA_yNRgtBH5Qoyeb9NJvtPg8gCzIDtB_6cYqrr6xtUh-fdQEpvXbcaAd_BxH_FbWTtP7aK9pqKy-n8dLisLh4Q2PQH84SDprcG0CvNc_xMDDr5QqaRiMas_qmH3MU3dnoZE8GT0HR2PV_X8GwKUk7tZ3IuHTfjsPpKD4eJghcslUGs8unA35GYaVq7hQ7acCZ9vvpoiLOmGRXaxtfg",
+							"value": "{{ACCESS_TOKEN}}",
 							"type": "string"
 						}
 					]
@@ -263,18 +253,130 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
-					"protocol": "http",
+					"raw": "{{HOST}}/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "8081",
 					"path": [
 						"wifi-analyzer",
 						"api",
 						"v1",
 						"report",
 						"1991c1b5-6a54-4012-94a1-694e935fc29f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get location list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/wifi-analyzer/api/v1/location",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"wifi-analyzer",
+						"api",
+						"v1",
+						"location"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create location",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Кутуза\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/wifi-analyzer/api/v1/location",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"wifi-analyzer",
+						"api",
+						"v1",
+						"location"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete location by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/wifi-analyzer/api/v1/location/2d16c873-7787-4675-901f-18bf10feb31e",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"wifi-analyzer",
+						"api",
+						"v1",
+						"location",
+						"2d16c873-7787-4675-901f-18bf10feb31e"
 					]
 				}
 			},

@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
 import ru.nemodev.wifi.analyzer.api.dto.BaseEntityDto;
 import ru.nemodev.wifi.analyzer.api.dto.device.DeviceInfoDto;
+import ru.nemodev.wifi.analyzer.api.dto.location.LocationDto;
 import ru.nemodev.wifi.analyzer.api.dto.wifi.info.WifiAnalyzeInfoDto;
 import ru.nemodev.wifi.analyzer.entity.wifi.report.WifiAnalyzeReport;
 
@@ -24,13 +25,19 @@ import java.util.stream.Collectors;
 @ApiModel(value = "Wifi analyze report")
 public class WifiAnalyzeReportDto extends BaseEntityDto {
 
-    @ApiModelProperty(value = "creationDate")
+    @ApiModelProperty(value = "CreationDate")
     private LocalDateTime creationDate;
 
-    @ApiModelProperty(value = "deviceInfo", required = true)
+    @ApiModelProperty(value = "Comment")
+    private String comment;
+
+    @ApiModelProperty(value = "Location")
+    private LocationDto location;
+
+    @ApiModelProperty(value = "DeviceInfo", required = true)
     private DeviceInfoDto deviceInfo;
 
-    @ApiModelProperty(value = "wifiAnalyzeInfoList", required = true)
+    @ApiModelProperty(value = "WifiAnalyzeInfoList", required = true)
     private List<WifiAnalyzeInfoDto> wifiAnalyzeInfoList;
 
     public WifiAnalyzeReport toEntity() {
@@ -41,6 +48,8 @@ public class WifiAnalyzeReportDto extends BaseEntityDto {
         WifiAnalyzeReport wifiAnalyzeReport = new WifiAnalyzeReport();
         wifiAnalyzeReport.setId(wifiAnalyzeReportDto.getId());
         wifiAnalyzeReport.setCreationDate(wifiAnalyzeReportDto.getCreationDate());
+        wifiAnalyzeReport.setComment(wifiAnalyzeReportDto.getComment());
+        wifiAnalyzeReport.setLocation(wifiAnalyzeReportDto.getLocation().toEntity());
         wifiAnalyzeReport.setDeviceInfo(DeviceInfoDto.toEntity(wifiAnalyzeReportDto.getDeviceInfo()));
         wifiAnalyzeReport.setWifiAnalyzeInfoList(
                 wifiAnalyzeReportDto.getWifiAnalyzeInfoList().stream()
@@ -64,6 +73,8 @@ public class WifiAnalyzeReportDto extends BaseEntityDto {
         WifiAnalyzeReportDto wifiAnalyzeReportDto = new WifiAnalyzeReportDto();
         wifiAnalyzeReportDto.setId(wifiAnalyzeReport.getId());
         wifiAnalyzeReportDto.setCreationDate(wifiAnalyzeReport.getCreationDate());
+        wifiAnalyzeReportDto.setComment(wifiAnalyzeReport.getComment());
+        wifiAnalyzeReportDto.setLocation(LocationDto.fromEntity(wifiAnalyzeReport.getLocation()));
         wifiAnalyzeReportDto.setDeviceInfo(DeviceInfoDto.fromEntity(wifiAnalyzeReport.getDeviceInfo()));
         wifiAnalyzeReportDto.setWifiAnalyzeInfoList(
                 wifiAnalyzeReport.getWifiAnalyzeInfoList().stream()

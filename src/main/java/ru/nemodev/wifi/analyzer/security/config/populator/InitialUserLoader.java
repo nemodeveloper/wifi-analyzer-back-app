@@ -37,11 +37,17 @@ public class InitialUserLoader implements ApplicationListener<ContextRefreshedEv
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        createUsers();
+        createOAuthClients();
+    }
 
-        Role role = new Role();
-        role.setName(Role.NAME_PREF + "ADMIN");
-        if (roleService.findByName(role.getName()).isEmpty()) {
-            roleService.create(role);
+    private void createUsers() {
+
+        // SUPER USER
+        Role adminRole = new Role();
+        adminRole.setName(Role.NAME_PREF + "ADMIN");
+        if (roleService.findByName(adminRole.getName()).isEmpty()) {
+            roleService.create(adminRole);
         }
 
         if (userService.findByLogin("admin").isEmpty()) {
@@ -50,15 +56,36 @@ public class InitialUserLoader implements ApplicationListener<ContextRefreshedEv
             user.setPassword(passwordEncoder.encode("1234"));
             user.setEmail("rest19930705@gmail.com");
             user.setEnabled(true);
-            user.setRoles(Arrays.asList(role));
+            user.setRoles(Arrays.asList(adminRole));
 
             userService.create(user);
         }
 
+        // ANALYZER USER
+        Role analyzerRole = new Role();
+        analyzerRole.setName(Role.NAME_PREF + "ANALYZER");
+        if (roleService.findByName(analyzerRole.getName()).isEmpty()) {
+            roleService.create(analyzerRole);
+        }
+
+        if (userService.findByLogin("analyzer").isEmpty()) {
+            User user = new User();
+            user.setLogin("analyzer");
+            user.setPassword(passwordEncoder.encode("1234"));
+            user.setEmail("analyzer@gmail.com");
+            user.setEnabled(true);
+            user.setRoles(Arrays.asList(analyzerRole));
+
+            userService.create(user);
+        }
+
+    }
+
+    private void createOAuthClients() {
         if (authClientDetailService.findByClientId("mobile").isEmpty()) {
             AuthClientDetail mobile = new AuthClientDetail();
             mobile.setClientId("mobile");
-            mobile.setClientSecret("$2a$10$Qh9Cjo0w4nMBSsrjML0n0OLLwcBxRGg2mrWs403kKE4sIorqJHq5y");
+            mobile.setClientSecret(passwordEncoder.encode("1234"));
             mobile.setAuthorizedGrantTypes(GrantType.getAllGrantTypes());
             mobile.setScope("read,write");
             mobile.setAccessTokenValidity(900);
@@ -70,7 +97,7 @@ public class InitialUserLoader implements ApplicationListener<ContextRefreshedEv
         if (authClientDetailService.findByClientId("web").isEmpty()) {
             AuthClientDetail web = new AuthClientDetail();
             web.setClientId("web");
-            web.setClientSecret("$2a$10$Qh9Cjo0w4nMBSsrjML0n0OLLwcBxRGg2mrWs403kKE4sIorqJHq5y");
+            web.setClientSecret(passwordEncoder.encode("1234"));
             web.setAuthorizedGrantTypes(GrantType.getAllGrantTypes());
             web.setScope("read,write");
             web.setAccessTokenValidity(1800);
@@ -78,6 +105,5 @@ public class InitialUserLoader implements ApplicationListener<ContextRefreshedEv
 
             authClientDetailService.create(web);
         }
-
     }
 }

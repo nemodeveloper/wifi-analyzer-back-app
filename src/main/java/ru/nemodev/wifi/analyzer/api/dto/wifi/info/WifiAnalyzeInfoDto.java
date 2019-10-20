@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @ApiModel(value = "Wifi analyze info")
 public class WifiAnalyzeInfoDto extends BaseEntityDto {
 
-    @ApiModelProperty(value = "creationDate", required = true)
+    @ApiModelProperty(value = "CreationDate", required = true)
     private LocalDateTime creationDate;
 
     @ApiModelProperty(value = "ssid", required = true)

@@ -12,6 +12,7 @@ import ru.nemodev.wifi.analyzer.security.entity.privilege.Privilege;
 import ru.nemodev.wifi.analyzer.security.entity.role.Role;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -22,6 +23,9 @@ import java.util.*;
 @Table(name = "USERS")
 public class User extends BaseEntity implements UserDetails
 {
+    @Column(name = "CREATION_DATE", nullable = false)
+    private LocalDateTime creationDate;
+
     @Column(name = "LOGIN", nullable = false)
     private String login;
 

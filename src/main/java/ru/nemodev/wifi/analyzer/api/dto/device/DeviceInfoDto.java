@@ -17,7 +17,7 @@ import ru.nemodev.wifi.analyzer.entity.device.DeviceInfo;
 @ApiModel(value = "Device info")
 public class DeviceInfoDto extends BaseEntityDto {
 
-    @ApiModelProperty(value = "name", required = true)
+    @ApiModelProperty(value = "Name", required = true)
     private String name;
 
     public DeviceInfo toEntity() {
