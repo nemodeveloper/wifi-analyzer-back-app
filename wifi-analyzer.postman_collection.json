@@ -6,381 +6,504 @@
 	},
 	"item": [
 		{
-			"name": "OAuth get token",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "web",
-							"type": "string"
+			"name": "oauth",
+			"item": [
+				{
+					"name": "OAuth get token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "web",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "password",
-							"value": "1234",
-							"type": "string"
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/oauth/token?username=Greha&password=1234&grant_type=password&scope=read write",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "Greha"
+								},
+								{
+									"key": "password",
+									"value": "1234"
+								},
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "scope",
+									"value": "read write"
+								}
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{HOST}}/wifi-analyzer/api/oauth/token?username=analyzer&password=1234&grant_type=password&scope=read write",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"wifi-analyzer",
-						"api",
-						"oauth",
-						"token"
-					],
-					"query": [
-						{
-							"key": "username",
-							"value": "analyzer"
+				{
+					"name": "OAuth refresh token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "web",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "password",
-							"value": "1234"
-						},
-						{
-							"key": "grant_type",
-							"value": "password"
-						},
-						{
-							"key": "scope",
-							"value": "read write"
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJleHAiOjE1NzE0OTQzMDUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZjFlYTE1ZWEtMWIyZi00YTc5LTk4MmMtNjVlMzgxMmM4MmYwIiwiY2xpZW50X2lkIjoid2ViIn0.A9lCVXbkXuIkW5RCnBPr5f5hHw6mb_-ga1YJwEA-PEGGr3__esqte_zdc2sqiFC2bPjz6GL42zk6IHgcHGuhlS9ISwlRgGfeWoaasEcz87Aq3FbxQvdngCuhw0weXPRlopNmjC-JZV5MjUJReXotrKVCIKaIonKo5xoa4CS6JEfQ8ZXJNeiXGQPasfN-FLGXQ2ADAk_VO1hoSXd9YPe_aKEgOPEMVbmEb2ebpu7YkymEvmJw9OydCLL9O0y9tvDkP3S3VE9SO8qPuEehWR1kUdAKNUnmDNyzaa1RVTBnRb0VULCxo2MpmJYAJPQ_nhl3cu5F0Y-KEiTppOEd6NlEtA",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token"
+								},
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJleHAiOjE1NzE0OTQzMDUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZjFlYTE1ZWEtMWIyZi00YTc5LTk4MmMtNjVlMzgxMmM4MmYwIiwiY2xpZW50X2lkIjoid2ViIn0.A9lCVXbkXuIkW5RCnBPr5f5hHw6mb_-ga1YJwEA-PEGGr3__esqte_zdc2sqiFC2bPjz6GL42zk6IHgcHGuhlS9ISwlRgGfeWoaasEcz87Aq3FbxQvdngCuhw0weXPRlopNmjC-JZV5MjUJReXotrKVCIKaIonKo5xoa4CS6JEfQ8ZXJNeiXGQPasfN-FLGXQ2ADAk_VO1hoSXd9YPe_aKEgOPEMVbmEb2ebpu7YkymEvmJw9OydCLL9O0y9tvDkP3S3VE9SO8qPuEehWR1kUdAKNUnmDNyzaa1RVTBnRb0VULCxo2MpmJYAJPQ_nhl3cu5F0Y-KEiTppOEd6NlEtA"
+								},
+								{
+									"key": "client_id",
+									"value": "mobile",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"disabled": true
+								}
+							]
 						}
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "OAuth refresh token",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "web",
-							"type": "string"
+			"name": "report",
+			"item": [
+				{
+					"name": "Get report list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "password",
-							"value": "1234",
-							"type": "string"
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/report?page=0&size=10",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"report"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{HOST}}/wifi-analyzer/api/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJleHAiOjE1NzE0OTQzMDUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZjFlYTE1ZWEtMWIyZi00YTc5LTk4MmMtNjVlMzgxMmM4MmYwIiwiY2xpZW50X2lkIjoid2ViIn0.A9lCVXbkXuIkW5RCnBPr5f5hHw6mb_-ga1YJwEA-PEGGr3__esqte_zdc2sqiFC2bPjz6GL42zk6IHgcHGuhlS9ISwlRgGfeWoaasEcz87Aq3FbxQvdngCuhw0weXPRlopNmjC-JZV5MjUJReXotrKVCIKaIonKo5xoa4CS6JEfQ8ZXJNeiXGQPasfN-FLGXQ2ADAk_VO1hoSXd9YPe_aKEgOPEMVbmEb2ebpu7YkymEvmJw9OydCLL9O0y9tvDkP3S3VE9SO8qPuEehWR1kUdAKNUnmDNyzaa1RVTBnRb0VULCxo2MpmJYAJPQ_nhl3cu5F0Y-KEiTppOEd6NlEtA",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"wifi-analyzer",
-						"api",
-						"oauth",
-						"token"
-					],
-					"query": [
-						{
-							"key": "grant_type",
-							"value": "refresh_token"
+				{
+					"name": "Create report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "refresh_token",
-							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiIwNzNmMDVlYS03YWYxLTRkNzQtYjJiMi00ZTc0ZWY3N2JkMDYiLCJleHAiOjE1NzE0OTQzMDUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZjFlYTE1ZWEtMWIyZi00YTc5LTk4MmMtNjVlMzgxMmM4MmYwIiwiY2xpZW50X2lkIjoid2ViIn0.A9lCVXbkXuIkW5RCnBPr5f5hHw6mb_-ga1YJwEA-PEGGr3__esqte_zdc2sqiFC2bPjz6GL42zk6IHgcHGuhlS9ISwlRgGfeWoaasEcz87Aq3FbxQvdngCuhw0weXPRlopNmjC-JZV5MjUJReXotrKVCIKaIonKo5xoa4CS6JEfQ8ZXJNeiXGQPasfN-FLGXQ2ADAk_VO1hoSXd9YPe_aKEgOPEMVbmEb2ebpu7YkymEvmJw9OydCLL9O0y9tvDkP3S3VE9SO8qPuEehWR1kUdAKNUnmDNyzaa1RVTBnRb0VULCxo2MpmJYAJPQ_nhl3cu5F0Y-KEiTppOEd6NlEtA"
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"comment\": \"16 этаж Б.131\",\n\t\"location\": {\n\t\t\"id\": \"49f29efc-415e-4b25-a630-6fcbb98b6f46\"\n\t},\n\t\"deviceInfo\": {\n\t\t\"name\": \"SAMSUNG S8\"\n\t},\n\t\"wifiAnalyzeInfoList\": [\n\t\t{\n\t\t\t\"ssid\": \"SBRF\"\n\t\t},\n\t\t{\n\t\t\t\"ssid\": \"Sberbank\"\n\t\t}\n\t]\n}"
 						},
-						{
-							"key": "client_id",
-							"value": "mobile",
-							"disabled": true
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/report",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get report detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "password",
-							"value": "1234",
-							"disabled": true
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"report",
+								"1991c1b5-6a54-4012-94a1-694e935fc29f"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get report list",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{ACCESS_TOKEN}}",
-							"type": "string"
-						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{HOST}}/wifi-analyzer/api/v1/report?page=0&size=10",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"wifi-analyzer",
-						"api",
-						"v1",
-						"report"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "0"
+				{
+					"name": "Delete report by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "size",
-							"value": "10"
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"report",
+								"1991c1b5-6a54-4012-94a1-694e935fc29f"
+							]
 						}
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Create report",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{ACCESS_TOKEN}}",
-							"type": "string"
+			"name": "location",
+			"item": [
+				{
+					"name": "Get location list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/location",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"location"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"comment\": \"16 этаж Б.131\",\n\t\"location\": {\n\t\t\"id\": \"bb4f3409-37df-4fad-b86c-7b05a47eb778\"\n\t},\n\t\"deviceInfo\": {\n\t\t\"name\": \"SAMSUNG S8\"\n\t},\n\t\"wifiAnalyzeInfoList\": [\n\t\t{\n\t\t\t\"ssid\": \"SBRF\"\n\t\t},\n\t\t{\n\t\t\t\"ssid\": \"Sberbank\"\n\t\t}\n\t]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Create location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Кутуза\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/location",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"location"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{HOST}}/wifi-analyzer/api/v1/report",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"wifi-analyzer",
-						"api",
-						"v1",
-						"report"
-					]
+				{
+					"name": "Delete location by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/location/2d16c873-7787-4675-901f-18bf10feb31e",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"location",
+								"2d16c873-7787-4675-901f-18bf10feb31e"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Get report detail",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{ACCESS_TOKEN}}",
-							"type": "string"
+			"name": "user",
+			"item": [
+				{
+					"name": "Get user list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/user",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"user"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{HOST}}/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"wifi-analyzer",
-						"api",
-						"v1",
-						"report",
-						"1991c1b5-6a54-4012-94a1-694e935fc29f"
-					]
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"login\": \"Greha\",\n\t\"password\": \"1234\",\n\t\"isAdmin\": \"false\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/user",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/user/a7e874d9-a0ca-443d-9ef4-4665957fa6dc",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"user",
+								"a7e874d9-a0ca-443d-9ef4-4665957fa6dc"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete report by id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{ACCESS_TOKEN}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{HOST}}/wifi-analyzer/api/v1/report/1991c1b5-6a54-4012-94a1-694e935fc29f",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"wifi-analyzer",
-						"api",
-						"v1",
-						"report",
-						"1991c1b5-6a54-4012-94a1-694e935fc29f"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get location list",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{ACCESS_TOKEN}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{HOST}}/wifi-analyzer/api/v1/location",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"wifi-analyzer",
-						"api",
-						"v1",
-						"location"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create location",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{ACCESS_TOKEN}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Кутуза\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{HOST}}/wifi-analyzer/api/v1/location",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"wifi-analyzer",
-						"api",
-						"v1",
-						"location"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete location by id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{ACCESS_TOKEN}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{HOST}}/wifi-analyzer/api/v1/location/2d16c873-7787-4675-901f-18bf10feb31e",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"wifi-analyzer",
-						"api",
-						"v1",
-						"location",
-						"2d16c873-7787-4675-901f-18bf10feb31e"
-					]
-				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
