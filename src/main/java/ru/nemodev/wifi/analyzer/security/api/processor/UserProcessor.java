@@ -7,6 +7,7 @@ import ru.nemodev.wifi.analyzer.security.api.dto.user.UserSaveDto;
 import ru.nemodev.wifi.analyzer.security.entity.user.User;
 import ru.nemodev.wifi.analyzer.security.service.user.UserService;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,14 @@ public class UserProcessor {
         return UserDto.fromEntityList(users);
     }
 
+    public UserDto current(Principal principal) {
+        return UserDto.fromEntity(userService.findByLogin(principal.getName())
+                .orElseThrow(() -> {
+                    throw new IllegalStateException(
+                            String.format("Не удалось найти авторизованного клиента с login=%s", principal.getName()));
+                }));
+    }
+
     public Optional<UserDto> findById(String id) {
         Optional<User> userOptional = userService.findById(id);
         if (userOptional.isEmpty()) {
@@ -49,6 +58,15 @@ public class UserProcessor {
         user.setLogin(userSaveDto.getLogin());
 
         return UserDto.fromEntity(userService.create(user, userSaveDto.getPassword(), userSaveDto.isAdmin()));
+    }
+
+    public UserDto update(String id, UserSaveDto userSaveDto) {
+        User user = new User();
+        user.setId(id);
+        user.setLogin(userSaveDto.getLogin());
+        user.setEnabled(userSaveDto.isEnabled());
+
+        return UserDto.fromEntity(userService.save(user, userSaveDto.getPassword(), userSaveDto.isAdmin()));
     }
 
     public void deleteById(String id) {

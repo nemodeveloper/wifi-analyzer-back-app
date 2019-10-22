@@ -29,7 +29,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}/wifi-analyzer/api/oauth/token?username=Greha&password=1234&grant_type=password&scope=read write",
+							"raw": "{{HOST}}/wifi-analyzer/api/oauth/token?username=admin&password=1234&grant_type=password&scope=read write",
 							"host": [
 								"{{HOST}}"
 							],
@@ -42,7 +42,7 @@
 							"query": [
 								{
 									"key": "username",
-									"value": "Greha"
+									"value": "admin"
 								},
 								{
 									"key": "password",
@@ -145,7 +145,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}/wifi-analyzer/api/v1/report?page=0&size=10",
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/report?page=0&size=10&locationId=272bc813-393e-4525-8f10-e3c92c9f4575",
 							"host": [
 								"{{HOST}}"
 							],
@@ -163,6 +163,10 @@
 								{
 									"key": "size",
 									"value": "10"
+								},
+								{
+									"key": "locationId",
+									"value": "272bc813-393e-4525-8f10-e3c92c9f4575"
 								}
 							]
 						}
@@ -187,13 +191,18 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"comment\": \"16 этаж Б.131\",\n\t\"location\": {\n\t\t\"id\": \"49f29efc-415e-4b25-a630-6fcbb98b6f46\"\n\t},\n\t\"deviceInfo\": {\n\t\t\"name\": \"SAMSUNG S8\"\n\t},\n\t\"wifiAnalyzeInfoList\": [\n\t\t{\n\t\t\t\"ssid\": \"SBRF\"\n\t\t},\n\t\t{\n\t\t\t\"ssid\": \"Sberbank\"\n\t\t}\n\t]\n}"
+							"raw": "{\n\t\"comment\": \"16 этаж Б.131\",\n\t\"location\": {\n\t\t\"id\": \"272bc813-393e-4525-8f10-e3c92c9f4575\"\n\t},\n\t\"deviceInfo\": {\n\t\t\"name\": \"SAMSUNG S8\"\n\t},\n\t\"wifiAnalyzeInfoList\": [\n\t\t{\n\t\t\t\"ssid\": \"SBRF\"\n\t\t},\n\t\t{\n\t\t\t\"ssid\": \"Sberbank\"\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{HOST}}/wifi-analyzer/api/v1/report",
@@ -332,7 +341,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Кутуза\"\n}"
+							"raw": "{\n\t\"name\": \"Кутуза\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{HOST}}/wifi-analyzer/api/v1/location",
@@ -367,12 +381,12 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"url": {
-							"raw": "{{HOST}}/wifi-analyzer/api/v1/location/2d16c873-7787-4675-901f-18bf10feb31e",
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/location/f4d9c44d-4e16-4d82-8353-5c53e23ff376",
 							"host": [
 								"{{HOST}}"
 							],
@@ -381,7 +395,54 @@
 								"api",
 								"v1",
 								"location",
-								"2d16c873-7787-4675-901f-18bf10feb31e"
+								"f4d9c44d-4e16-4d82-8353-5c53e23ff376"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update location by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Кутуза\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/location/ced7430e-c4d2-44cf-a753-4cfa64c8d269",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"location",
+								"ced7430e-c4d2-44cf-a753-4cfa64c8d269"
 							]
 						}
 					},
@@ -465,7 +526,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete user by",
+					"name": "Delete user by id",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -497,6 +558,122 @@
 								"v1",
 								"user",
 								"a7e874d9-a0ca-443d-9ef4-4665957fa6dc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get current user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/user/me",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"analyzer\",\r\n    \"password\": \"1234\",\r\n    \"enabled\": true,\r\n    \"admin\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/user/c7cf3bef-4cae-4c65-b806-86bd42d646e6",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"user",
+								"c7cf3bef-4cae-4c65-b806-86bd42d646e6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/user/c7cf3bef-4cae-4c65-b806-86bd42d646e6",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"wifi-analyzer",
+								"api",
+								"v1",
+								"user",
+								"c7cf3bef-4cae-4c65-b806-86bd42d646e6"
 							]
 						}
 					},

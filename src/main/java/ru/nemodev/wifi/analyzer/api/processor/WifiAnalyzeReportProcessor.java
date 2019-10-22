@@ -20,7 +20,7 @@ public class WifiAnalyzeReportProcessor {
         this.wifiAnalyzeReportService = wifiAnalyzeReportService;
     }
 
-    public List<WifiAnalyzeReportDto> findBy(Integer page, Integer size) {
+    public List<WifiAnalyzeReportDto> findBy(String locationId, Integer page, Integer size) {
         if (page == null) {
             page = 0;
         }
@@ -28,9 +28,8 @@ public class WifiAnalyzeReportProcessor {
             size = 10;
         }
 
-        List<WifiAnalyzeReport> wifiAnalyzeReports =
-                wifiAnalyzeReportService.findBy(PageRequest.of(page, size,
-                        Sort.by(Sort.Direction.DESC, "creationDate")));
+        List<WifiAnalyzeReport> wifiAnalyzeReports = wifiAnalyzeReportService.findBy(locationId,
+                        PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "creationDate")));
 
         return WifiAnalyzeReportDto.fromList(wifiAnalyzeReports);
     }

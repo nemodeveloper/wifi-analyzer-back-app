@@ -27,9 +27,11 @@ public class WifiAnalyzeReportEndpoint {
 
     @GetMapping
     @ApiOperation(value = "Find by params")
-    public ResponseEntity<List<WifiAnalyzeReportDto>> findBy(@RequestParam(value = "page", required = false) Integer page,
-                                                              @RequestParam(value = "size", required = false) Integer size) {
-        return ResponseEntity.ok(wifiAnalyzeReportProcessor.findBy(page, size));
+    public ResponseEntity<List<WifiAnalyzeReportDto>> findBy(
+            @RequestParam(value = "locationId", required = false) String locationId,
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "size", required = false) Integer size) {
+        return ResponseEntity.ok(wifiAnalyzeReportProcessor.findBy(locationId, page, size));
     }
 
     @GetMapping("/{id}")

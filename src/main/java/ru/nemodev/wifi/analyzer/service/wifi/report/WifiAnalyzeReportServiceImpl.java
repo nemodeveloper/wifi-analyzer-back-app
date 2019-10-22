@@ -1,5 +1,6 @@
 package ru.nemodev.wifi.analyzer.service.wifi.report;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,7 +77,10 @@ public class WifiAnalyzeReportServiceImpl implements WifiAnalyzeReportService {
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public List<WifiAnalyzeReport> findBy(Pageable pageable) {
-        return wifiAnalyzeReportRepository.findAll(pageable).getContent();
+    public List<WifiAnalyzeReport> findBy(String locationId, Pageable pageable) {
+        if (StringUtils.isEmpty(locationId)) {
+            return wifiAnalyzeReportRepository.findAll(pageable).getContent();
+        }
+        return wifiAnalyzeReportRepository.findByLocationId(locationId, pageable).getContent();
     }
 }

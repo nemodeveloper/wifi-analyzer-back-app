@@ -25,4 +25,7 @@ public class UserSaveDto extends BaseEntityDto {
     @ApiModelProperty(value = "Is admin")
     private boolean admin;
 
+    @ApiModelProperty(value = "User is enabled")
+    private boolean enabled;
+
 }

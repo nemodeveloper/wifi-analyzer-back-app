@@ -14,6 +14,6 @@ public interface WifiAnalyzeReportService {
     WifiAnalyzeReport create(String userLogin, WifiAnalyzeReport wifiAnalyzeReport);
     Optional<WifiAnalyzeReport> findById(String id);
     void deleteById(String id);
-    List<WifiAnalyzeReport> findBy(Pageable pageable);
+    List<WifiAnalyzeReport> findBy(String locationId, Pageable pageable);
 
 }

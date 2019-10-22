@@ -66,7 +66,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user, String password, boolean isAdmin) {
-        return null;
+
+        User existUser = findById(user.getId()).orElseThrow(() -> {
+            throw new IllegalArgumentException(String.format("Пользователь с id=%s не найден!", user.getId()));
+        });
+
+        if (!existUser.getLogin().equals(user.getLogin())
+                && existsByLogin(user.getLogin())) {
+            throw new IllegalArgumentException(String.format("Пользователь с Login = %s уже зарегистирован!", user.getLogin()));
+        }
+
+        String roleName = isAdmin ? RoleType.ADMIN.getRole() : RoleType.ANALYZER.getRole();
+        Optional<Role> roleOptional = roleService.findByName(roleName);
+        if (roleOptional.isEmpty()) {
+            throw new IllegalStateException(String.format("Не удалось найти схему прав с названием = %s", roleName));
+        }
+
+        existUser.setLogin(user.getLogin());
+        existUser.setPassword(passwordEncoder.encode(password));
+        existUser.setRoles(List.of(roleOptional.get()));
+        existUser.setEnabled(user.isEnabled());
+
+        return userRepository.saveAndFlush(existUser);
     }
 
     @Override

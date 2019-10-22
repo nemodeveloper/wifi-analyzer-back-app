@@ -11,6 +11,7 @@ import ru.nemodev.wifi.analyzer.security.api.dto.user.UserDto;
 import ru.nemodev.wifi.analyzer.security.api.dto.user.UserSaveDto;
 import ru.nemodev.wifi.analyzer.security.api.processor.UserProcessor;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -32,11 +33,24 @@ public class UserEndpoint {
         return ResponseEntity.ok(userProcessor.findBy(page, size));
     }
 
+    @GetMapping("/me")
+    @ApiOperation(value = "Current user information")
+    public ResponseEntity<UserDto> current(Principal principal) {
+        return ResponseEntity.ok(userProcessor.current(principal));
+    }
+
     @GetMapping("/{id}")
     @ApiOperation(value = "Find user by id")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserDto> findById(@PathVariable("id") String id) {
         return ResponseEntity.of(userProcessor.findById(id));
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation(value = "Update user")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserDto> updateById(@PathVariable("id") String id, @RequestBody UserSaveDto userSaveDto) {
+        return ResponseEntity.ok(userProcessor.update(id, userSaveDto));
     }
 
     @PostMapping
