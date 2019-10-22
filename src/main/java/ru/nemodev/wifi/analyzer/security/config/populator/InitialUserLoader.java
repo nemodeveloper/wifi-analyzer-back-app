@@ -7,13 +7,12 @@ import org.springframework.stereotype.Component;
 import ru.nemodev.wifi.analyzer.security.entity.oauth.AuthClientDetail;
 import ru.nemodev.wifi.analyzer.security.entity.oauth.GrantType;
 import ru.nemodev.wifi.analyzer.security.entity.role.Role;
+import ru.nemodev.wifi.analyzer.security.entity.role.RoleType;
 import ru.nemodev.wifi.analyzer.security.entity.user.User;
 import ru.nemodev.wifi.analyzer.security.service.oauth.AuthClientDetailService;
 import ru.nemodev.wifi.analyzer.security.service.privilege.PrivilegeService;
 import ru.nemodev.wifi.analyzer.security.service.role.RoleService;
 import ru.nemodev.wifi.analyzer.security.service.user.UserService;
-
-import java.util.Arrays;
 
 
 @Component
@@ -45,38 +44,29 @@ public class InitialUserLoader implements ApplicationListener<ContextRefreshedEv
 
         // SUPER USER
         Role adminRole = new Role();
-        adminRole.setName(Role.NAME_PREF + "ADMIN");
+        adminRole.setName(RoleType.ADMIN.getRole());
+        // TODO оптимизировать поиск по existsByName
         if (roleService.findByName(adminRole.getName()).isEmpty()) {
             roleService.create(adminRole);
         }
 
-        if (userService.findByLogin("admin").isEmpty()) {
+        if (!userService.existsByLogin("admin")) {
             User user = new User();
             user.setLogin("admin");
-            user.setPassword(passwordEncoder.encode("1234"));
-            user.setEmail("rest19930705@gmail.com");
-            user.setEnabled(true);
-            user.setRoles(Arrays.asList(adminRole));
-
-            userService.create(user);
+            userService.create(user, "1234", true);
         }
 
         // ANALYZER USER
         Role analyzerRole = new Role();
-        analyzerRole.setName(Role.NAME_PREF + "ANALYZER");
+        analyzerRole.setName(RoleType.ANALYZER.getRole());
         if (roleService.findByName(analyzerRole.getName()).isEmpty()) {
             roleService.create(analyzerRole);
         }
 
-        if (userService.findByLogin("analyzer").isEmpty()) {
+        if (!userService.existsByLogin("analyzer")) {
             User user = new User();
             user.setLogin("analyzer");
-            user.setPassword(passwordEncoder.encode("1234"));
-            user.setEmail("analyzer@gmail.com");
-            user.setEnabled(true);
-            user.setRoles(Arrays.asList(analyzerRole));
-
-            userService.create(user);
+            userService.create(user, "1234", false);
         }
 
     }

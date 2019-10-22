@@ -3,10 +3,13 @@ package ru.nemodev.wifi.analyzer.entity.wifi.report;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import ru.nemodev.wifi.analyzer.core.entity.BaseEntity;
 import ru.nemodev.wifi.analyzer.entity.device.DeviceInfo;
 import ru.nemodev.wifi.analyzer.entity.location.Location;
 import ru.nemodev.wifi.analyzer.entity.wifi.info.WifiAnalyzeInfo;
+import ru.nemodev.wifi.analyzer.security.entity.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,6 +31,11 @@ public class WifiAnalyzeReport extends BaseEntity {
 
     @Column(name = "COMMENT")
     private String comment;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "OWNER_USER_ID", nullable = false)
+    @Fetch(FetchMode.SELECT)
+    private User ownerUser;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "LOCATION_ID", nullable = false)

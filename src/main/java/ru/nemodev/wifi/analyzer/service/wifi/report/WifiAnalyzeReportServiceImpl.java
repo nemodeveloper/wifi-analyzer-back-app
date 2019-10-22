@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.nemodev.wifi.analyzer.entity.location.Location;
 import ru.nemodev.wifi.analyzer.entity.wifi.report.WifiAnalyzeReport;
 import ru.nemodev.wifi.analyzer.repository.wifi.report.WifiAnalyzeReportRepository;
+import ru.nemodev.wifi.analyzer.security.entity.user.User;
+import ru.nemodev.wifi.analyzer.security.service.user.UserService;
 import ru.nemodev.wifi.analyzer.service.location.LocationService;
 
 import java.time.LocalDateTime;
@@ -19,15 +21,24 @@ public class WifiAnalyzeReportServiceImpl implements WifiAnalyzeReportService {
 
     private final WifiAnalyzeReportRepository wifiAnalyzeReportRepository;
     private final LocationService locationService;
+    private final UserService userService;
 
-    public WifiAnalyzeReportServiceImpl(WifiAnalyzeReportRepository wifiAnalyzeReportRepository, LocationService locationService) {
+    public WifiAnalyzeReportServiceImpl(WifiAnalyzeReportRepository wifiAnalyzeReportRepository,
+                                        LocationService locationService, UserService userService) {
         this.wifiAnalyzeReportRepository = wifiAnalyzeReportRepository;
         this.locationService = locationService;
+        this.userService = userService;
     }
 
     @Override
     @Transactional
-    public WifiAnalyzeReport create(WifiAnalyzeReport wifiAnalyzeReport) {
+    public WifiAnalyzeReport create(String userLogin, WifiAnalyzeReport wifiAnalyzeReport) {
+
+        User user = userService.findByLogin(userLogin)
+                .orElseThrow(()-> new IllegalArgumentException(
+                        String.format("Не удалось найти пользователя с userLogin=%s", userLogin)));
+
+        wifiAnalyzeReport.setOwnerUser(user);
 
         Location location = locationService.findById(wifiAnalyzeReport.getLocation().getId())
                 .orElseThrow(()-> new IllegalArgumentException(

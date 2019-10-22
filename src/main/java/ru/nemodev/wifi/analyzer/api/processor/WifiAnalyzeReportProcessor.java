@@ -43,9 +43,9 @@ public class WifiAnalyzeReportProcessor {
         return Optional.of(WifiAnalyzeReportDto.fromEntity(reportOptional.get()));
     }
 
-    public WifiAnalyzeReportDto create(WifiAnalyzeReportDto wifiAnalyzeReportDto) {
+    public WifiAnalyzeReportDto create(WifiAnalyzeReportDto wifiAnalyzeReportDto, String userLogin) {
         return WifiAnalyzeReportDto.fromEntity(
-                wifiAnalyzeReportService.create(wifiAnalyzeReportDto.toEntity()));
+                wifiAnalyzeReportService.create(userLogin, wifiAnalyzeReportDto.toEntity()));
     }
 
     public void deleteById(String id) {

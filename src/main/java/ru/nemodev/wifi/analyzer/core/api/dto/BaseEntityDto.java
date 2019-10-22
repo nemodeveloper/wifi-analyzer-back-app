@@ -1,4 +1,4 @@
-package ru.nemodev.wifi.analyzer.api.dto;
+package ru.nemodev.wifi.analyzer.core.api.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

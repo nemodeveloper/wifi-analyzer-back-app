@@ -10,9 +10,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.nemodev.wifi.analyzer.security.service.user.UserService;
+import ru.nemodev.wifi.analyzer.security.config.service.SecurityServiceConfig;
 
 
 @Configuration
@@ -33,11 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             "/h2-console**"
     };
 
-    private final UserService userService;
+    private final SecurityServiceConfig securityServiceConfig;
 
-    public SecurityConfig(UserService userService)
+    public SecurityConfig(SecurityServiceConfig securityServiceConfig)
     {
-        this.userService = userService;
+        this.securityServiceConfig = securityServiceConfig;
     }
 
     @Override
@@ -61,19 +59,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService)
-            .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(securityServiceConfig.userService())
+            .passwordEncoder(securityServiceConfig.passwordEncoder());
     }
 
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
 }

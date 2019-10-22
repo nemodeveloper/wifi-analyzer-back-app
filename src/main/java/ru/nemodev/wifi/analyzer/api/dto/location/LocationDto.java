@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.nemodev.wifi.analyzer.api.dto.BaseEntityDto;
+import ru.nemodev.wifi.analyzer.core.api.dto.BaseEntityDto;
 import ru.nemodev.wifi.analyzer.entity.location.Location;
 
 /**

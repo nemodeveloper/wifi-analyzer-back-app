@@ -6,11 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
-import ru.nemodev.wifi.analyzer.api.dto.BaseEntityDto;
 import ru.nemodev.wifi.analyzer.api.dto.device.DeviceInfoDto;
 import ru.nemodev.wifi.analyzer.api.dto.location.LocationDto;
 import ru.nemodev.wifi.analyzer.api.dto.wifi.info.WifiAnalyzeInfoDto;
+import ru.nemodev.wifi.analyzer.core.api.dto.BaseEntityDto;
 import ru.nemodev.wifi.analyzer.entity.wifi.report.WifiAnalyzeReport;
+import ru.nemodev.wifi.analyzer.security.api.dto.user.UserOwnerDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,6 +31,9 @@ public class WifiAnalyzeReportDto extends BaseEntityDto {
 
     @ApiModelProperty(value = "Comment")
     private String comment;
+
+    @ApiModelProperty(value = "OwnerUser")
+    private UserOwnerDto ownerUser;
 
     @ApiModelProperty(value = "Location")
     private LocationDto location;
@@ -74,6 +78,7 @@ public class WifiAnalyzeReportDto extends BaseEntityDto {
         wifiAnalyzeReportDto.setId(wifiAnalyzeReport.getId());
         wifiAnalyzeReportDto.setCreationDate(wifiAnalyzeReport.getCreationDate());
         wifiAnalyzeReportDto.setComment(wifiAnalyzeReport.getComment());
+        wifiAnalyzeReportDto.setOwnerUser(UserOwnerDto.fromEntity(wifiAnalyzeReport.getOwnerUser()));
         wifiAnalyzeReportDto.setLocation(LocationDto.fromEntity(wifiAnalyzeReport.getLocation()));
         wifiAnalyzeReportDto.setDeviceInfo(DeviceInfoDto.fromEntity(wifiAnalyzeReport.getDeviceInfo()));
         wifiAnalyzeReportDto.setWifiAnalyzeInfoList(

@@ -32,9 +32,6 @@ public class User extends BaseEntity implements UserDetails
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "EMAIL", nullable = false)
-    private String email;
-
     @Type(type= "org.hibernate.type.NumericBooleanType")
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;

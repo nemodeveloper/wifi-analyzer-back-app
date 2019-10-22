@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.nemodev.wifi.analyzer.api.dto.wifi.report.WifiAnalyzeReportDto;
 import ru.nemodev.wifi.analyzer.api.processor.WifiAnalyzeReportProcessor;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -39,8 +40,8 @@ public class WifiAnalyzeReportEndpoint {
 
     @PostMapping
     @ApiOperation(value = "Create report")
-    public ResponseEntity create(@RequestBody WifiAnalyzeReportDto wifiAnalyzeReportDto) {
-        return ResponseEntity.ok(wifiAnalyzeReportProcessor.create(wifiAnalyzeReportDto));
+    public ResponseEntity create(@RequestBody WifiAnalyzeReportDto wifiAnalyzeReportDto, Principal principal) {
+        return ResponseEntity.ok(wifiAnalyzeReportProcessor.create(wifiAnalyzeReportDto, principal.getName()));
     }
 
     @DeleteMapping("/{id}")

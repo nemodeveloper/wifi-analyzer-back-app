@@ -11,7 +11,7 @@ import java.util.Optional;
  */
 public interface WifiAnalyzeReportService {
 
-    WifiAnalyzeReport create(WifiAnalyzeReport wifiAnalyzeReport);
+    WifiAnalyzeReport create(String userLogin, WifiAnalyzeReport wifiAnalyzeReport);
     Optional<WifiAnalyzeReport> findById(String id);
     void deleteById(String id);
     List<WifiAnalyzeReport> findBy(Pageable pageable);

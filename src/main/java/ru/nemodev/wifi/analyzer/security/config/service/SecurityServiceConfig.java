@@ -2,6 +2,8 @@ package ru.nemodev.wifi.analyzer.security.config.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.nemodev.wifi.analyzer.security.repository.oauth.AuthClientDetailRepository;
 import ru.nemodev.wifi.analyzer.security.repository.privilege.PrivilegeRepository;
 import ru.nemodev.wifi.analyzer.security.repository.role.RoleRepository;
@@ -37,7 +39,12 @@ public class SecurityServiceConfig
     @Bean
     public UserService userService()
     {
-        return new UserServiceImpl(userRepository);
+        return new UserServiceImpl(userRepository, passwordEncoder(), roleService());
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean

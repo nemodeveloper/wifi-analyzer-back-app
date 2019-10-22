@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Table(name = "PRIVILEGES")
 public class Privilege extends BaseEntity
 {
+    // TODO создать енум как для Role
     public static final String NAME_PREF = "PRIVILEGE_";
 
     @Column(name = "NAME", nullable = false)
