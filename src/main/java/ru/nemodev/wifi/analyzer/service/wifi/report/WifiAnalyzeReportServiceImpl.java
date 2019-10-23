@@ -49,7 +49,7 @@ public class WifiAnalyzeReportServiceImpl implements WifiAnalyzeReportService {
 
         final LocalDateTime nowDate = LocalDateTime.now();
         wifiAnalyzeReport.setCreationDate(nowDate);
-        wifiAnalyzeReport.getWifiAnalyzeInfoList()
+        wifiAnalyzeReport.getWifiAnalyzeInfos()
                 .forEach(wifiAnalyzeInfo -> {
                     wifiAnalyzeInfo.setCreationDate(nowDate);
                     wifiAnalyzeInfo.setWifiAnalyzeReport(wifiAnalyzeReport);

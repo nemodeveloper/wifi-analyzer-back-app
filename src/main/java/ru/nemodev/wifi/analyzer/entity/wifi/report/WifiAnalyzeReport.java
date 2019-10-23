@@ -46,10 +46,10 @@ public class WifiAnalyzeReport extends BaseEntity {
     private DeviceInfo deviceInfo;
 
     @OneToMany(mappedBy = "wifiAnalyzeReport", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<WifiAnalyzeInfo> wifiAnalyzeInfoList = new ArrayList<>();
+    private List<WifiAnalyzeInfo> wifiAnalyzeInfos = new ArrayList<>();
 
     public void addWifiAnalyzeInfo(WifiAnalyzeInfo wifiAnalyzeInfo) {
-        wifiAnalyzeInfoList.add(wifiAnalyzeInfo);
+        wifiAnalyzeInfos.add(wifiAnalyzeInfo);
         wifiAnalyzeInfo.setWifiAnalyzeReport(this);
     }
 

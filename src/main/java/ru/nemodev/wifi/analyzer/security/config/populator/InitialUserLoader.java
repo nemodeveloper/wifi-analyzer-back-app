@@ -78,8 +78,8 @@ public class InitialUserLoader implements ApplicationListener<ContextRefreshedEv
             mobile.setClientSecret(passwordEncoder.encode("1234"));
             mobile.setAuthorizedGrantTypes(GrantType.getAllGrantTypes());
             mobile.setScope("read,write");
-            mobile.setAccessTokenValidity(900);
-            mobile.setRefreshTokenValidity(960);
+            mobile.setAccessTokenValidity(3600);
+            mobile.setRefreshTokenValidity(3660);
 
             authClientDetailService.create(mobile);
         }
@@ -90,8 +90,8 @@ public class InitialUserLoader implements ApplicationListener<ContextRefreshedEv
             web.setClientSecret(passwordEncoder.encode("1234"));
             web.setAuthorizedGrantTypes(GrantType.getAllGrantTypes());
             web.setScope("read,write");
-            web.setAccessTokenValidity(1800);
-            web.setRefreshTokenValidity(2000);
+            web.setAccessTokenValidity(3600);
+            web.setRefreshTokenValidity(3660);
 
             authClientDetailService.create(web);
         }

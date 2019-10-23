@@ -42,7 +42,7 @@ public class WifiAnalyzeReportDto extends BaseEntityDto {
     private DeviceInfoDto deviceInfo;
 
     @ApiModelProperty(value = "WifiAnalyzeInfoList", required = true)
-    private List<WifiAnalyzeInfoDto> wifiAnalyzeInfoList;
+    private List<WifiAnalyzeInfoDto> wifiAnalyzeInfos;
 
     public WifiAnalyzeReport toEntity() {
         return toEntity(this);
@@ -55,8 +55,8 @@ public class WifiAnalyzeReportDto extends BaseEntityDto {
         wifiAnalyzeReport.setComment(wifiAnalyzeReportDto.getComment());
         wifiAnalyzeReport.setLocation(wifiAnalyzeReportDto.getLocation().toEntity());
         wifiAnalyzeReport.setDeviceInfo(DeviceInfoDto.toEntity(wifiAnalyzeReportDto.getDeviceInfo()));
-        wifiAnalyzeReport.setWifiAnalyzeInfoList(
-                wifiAnalyzeReportDto.getWifiAnalyzeInfoList().stream()
+        wifiAnalyzeReport.setWifiAnalyzeInfos(
+                wifiAnalyzeReportDto.getWifiAnalyzeInfos().stream()
                         .map(wifiAnalyzeInfoDto -> wifiAnalyzeInfoDto.toEntity())
                         .collect(Collectors.toList()));
 
@@ -81,8 +81,8 @@ public class WifiAnalyzeReportDto extends BaseEntityDto {
         wifiAnalyzeReportDto.setOwnerUser(UserOwnerDto.fromEntity(wifiAnalyzeReport.getOwnerUser()));
         wifiAnalyzeReportDto.setLocation(LocationDto.fromEntity(wifiAnalyzeReport.getLocation()));
         wifiAnalyzeReportDto.setDeviceInfo(DeviceInfoDto.fromEntity(wifiAnalyzeReport.getDeviceInfo()));
-        wifiAnalyzeReportDto.setWifiAnalyzeInfoList(
-                wifiAnalyzeReport.getWifiAnalyzeInfoList().stream()
+        wifiAnalyzeReportDto.setWifiAnalyzeInfos(
+                wifiAnalyzeReport.getWifiAnalyzeInfos().stream()
                         .map(WifiAnalyzeInfoDto::fromEntity)
                         .collect(Collectors.toList()));
 

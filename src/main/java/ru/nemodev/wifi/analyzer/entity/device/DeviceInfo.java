@@ -19,7 +19,19 @@ import javax.persistence.Table;
 @Table(name = "DEVICES_INFO")
 public class DeviceInfo extends BaseEntity {
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "DEVICE", nullable = false)
+    private String device;
+
+    @Column(name = "MODEL", nullable = false)
+    private String model;
+
+    @Column(name = "VERSION_OS", nullable = false)
+    private String versionOS;
+
+    @Column(name = "MAC_ADDRESS", nullable = false)
+    private String macAddress;
+
+    @Column(name = "IP_ADDRESS", nullable = false)
+    private String ipAddress;
 
 }

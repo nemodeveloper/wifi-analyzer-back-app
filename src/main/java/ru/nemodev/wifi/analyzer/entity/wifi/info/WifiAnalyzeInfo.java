@@ -23,7 +23,19 @@ public class WifiAnalyzeInfo extends BaseEntity {
     private LocalDateTime creationDate;
 
     @Column(name = "SSID", nullable = false)
-    private String ssid;
+    private String SSID;
+
+    @Column(name = "BSSID", nullable = false)
+    private String BSSID;
+
+    @Column(name = "RSSI", nullable = false)
+    private Integer RSSI;
+
+    @Column(name = "SIGNAL_LEVEL", nullable = false)
+    private String signalLevel;
+
+    @Column(name = "FREQUENCY", nullable = false)
+    private Integer frequency;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "WIFI_REPORT_ID")
