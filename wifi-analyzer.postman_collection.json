@@ -145,7 +145,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}/wifi-analyzer/api/v1/report?page=0&size=10&locationId=272bc813-393e-4525-8f10-e3c92c9f4575",
+							"raw": "{{HOST}}/wifi-analyzer/api/v1/report?page=0&size=10&locationId=5f34320b-6510-46bb-8236-7aacc9a492f1",
 							"host": [
 								"{{HOST}}"
 							],
@@ -166,7 +166,7 @@
 								},
 								{
 									"key": "locationId",
-									"value": "272bc813-393e-4525-8f10-e3c92c9f4575"
+									"value": "5f34320b-6510-46bb-8236-7aacc9a492f1"
 								}
 							]
 						}
@@ -197,12 +197,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"comment\": \"16 этаж Б.131\",\n\t\"location\": {\n\t\t\"id\": \"272bc813-393e-4525-8f10-e3c92c9f4575\"\n\t},\n\t\"deviceInfo\": {\n\t\t\"name\": \"SAMSUNG S8\"\n\t},\n\t\"wifiAnalyzeInfoList\": [\n\t\t{\n\t\t\t\"ssid\": \"SBRF\"\n\t\t},\n\t\t{\n\t\t\t\"ssid\": \"Sberbank\"\n\t\t}\n\t]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"comment\": \"16 этаж Б.131\",\n\t\"location\": {\n\t\t\"id\": \"5f34320b-6510-46bb-8236-7aacc9a492f1\"\n\t},\n\t\"deviceInfo\": {\n\t\t\"device\": \"SAMSUNG S8\",\n\t\t\"model\": \"950F\",\n\t\t\"versionOS\": \"Android version 9\",\n\t\t\"macAddress\": \"1234:1234:1234:1234\",\n\t\t\"ipAddress\": \"123.123.123.123\"\n\t},\n\t\"wifiAnalyzeInfoList\": [\n\t\t{\n\t\t\t\"ssid\": \"SBRF\",\n\t\t\t\"bssid\": \"1234:1234:1234:1234\",\n\t\t\t\"rssi\": -50,\n\t\t\t\"signalLevel\": \"excelent\",\n\t\t\t\"frequency\": 5000 \n\t\t},\n\t\t{\n\t\t\t\"ssid\": \"Sberbank-Guest\",\n\t\t\t\"bssid\": \"1234:1234:1234:1234\",\n\t\t\t\"rssi\": -128,\n\t\t\t\"signalLevel\": \"bad\",\n\t\t\t\"frequency\": 5000 \n\t\t}\n\t]\n}"
 						},
 						"url": {
 							"raw": "{{HOST}}/wifi-analyzer/api/v1/report",
@@ -341,12 +336,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Кутуза\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"name\": \"Кутузовский 32\"\n}"
 						},
 						"url": {
 							"raw": "{{HOST}}/wifi-analyzer/api/v1/location",
@@ -425,12 +415,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Кутуза\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"name\": \"Кутуза\"\n}"
 						},
 						"url": {
 							"raw": "{{HOST}}/wifi-analyzer/api/v1/location/ced7430e-c4d2-44cf-a753-4cfa64c8d269",
@@ -618,12 +603,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"login\": \"analyzer\",\r\n    \"password\": \"1234\",\r\n    \"enabled\": true,\r\n    \"admin\": false\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n    \"login\": \"analyzer\",\r\n    \"password\": \"1234\",\r\n    \"enabled\": true,\r\n    \"admin\": false\r\n}"
 						},
 						"url": {
 							"raw": "{{HOST}}/wifi-analyzer/api/v1/user/c7cf3bef-4cae-4c65-b806-86bd42d646e6",
