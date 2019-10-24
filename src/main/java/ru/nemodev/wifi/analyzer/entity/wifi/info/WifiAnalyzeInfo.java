@@ -37,6 +37,9 @@ public class WifiAnalyzeInfo extends BaseEntity {
     @Column(name = "FREQUENCY", nullable = false)
     private Integer frequency;
 
+    @Column(name = "SPEED")
+    private String speed;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "WIFI_REPORT_ID")
     private WifiAnalyzeReport wifiAnalyzeReport;

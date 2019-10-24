@@ -37,6 +37,9 @@ public class WifiAnalyzeInfoDto extends BaseEntityDto {
     @ApiModelProperty(value = "Frequency", required = true)
     private Integer frequency;
 
+    @ApiModelProperty(value = "Verbose speed", required = true)
+    private String speed;
+
     public WifiAnalyzeInfo toEntity() {
         return toEntity(this);
     }
@@ -50,6 +53,7 @@ public class WifiAnalyzeInfoDto extends BaseEntityDto {
         wifiAnalyzeInfo.setRSSI(wifiAnalyzeInfoDto.getRssi());
         wifiAnalyzeInfo.setSignalLevel(wifiAnalyzeInfoDto.getSignalLevel());
         wifiAnalyzeInfo.setFrequency(wifiAnalyzeInfoDto.getFrequency());
+        wifiAnalyzeInfo.setSpeed(wifiAnalyzeInfoDto.getSpeed());
 
         return wifiAnalyzeInfo;
     }
@@ -63,6 +67,7 @@ public class WifiAnalyzeInfoDto extends BaseEntityDto {
         wifiAnalyzeInfoDto.setRssi(wifiAnalyzeInfo.getRSSI());
         wifiAnalyzeInfoDto.setSignalLevel(wifiAnalyzeInfo.getSignalLevel());
         wifiAnalyzeInfoDto.setFrequency(wifiAnalyzeInfo.getFrequency());
+        wifiAnalyzeInfoDto.setSpeed(wifiAnalyzeInfo.getSpeed());
 
         return wifiAnalyzeInfoDto;
     }
